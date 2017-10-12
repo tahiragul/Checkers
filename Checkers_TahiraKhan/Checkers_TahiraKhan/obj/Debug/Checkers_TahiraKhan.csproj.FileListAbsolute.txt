@@ -1,0 +1,7 @@
+C:\Users\tahira\Desktop\tahira-khan-set09117\Checkers_TahiraKhan\Checkers_TahiraKhan\bin\Debug\Checkers_TahiraKhan.exe.config
+C:\Users\tahira\Desktop\tahira-khan-set09117\Checkers_TahiraKhan\Checkers_TahiraKhan\bin\Debug\Checkers_TahiraKhan.exe
+C:\Users\tahira\Desktop\tahira-khan-set09117\Checkers_TahiraKhan\Checkers_TahiraKhan\bin\Debug\Checkers_TahiraKhan.pdb
+C:\Users\tahira\Desktop\tahira-khan-set09117\Checkers_TahiraKhan\Checkers_TahiraKhan\obj\Debug\Checkers_TahiraKhan.csproj.CoreCompileInputs.cache
+C:\Users\tahira\Desktop\tahira-khan-set09117\Checkers_TahiraKhan\Checkers_TahiraKhan\obj\Debug\Checkers_TahiraKhan.exe
+C:\Users\tahira\Desktop\tahira-khan-set09117\Checkers_TahiraKhan\Checkers_TahiraKhan\obj\Debug\Checkers_TahiraKhan.pdb
+C:\Users\tahira\Desktop\tahira-khan-set09117\Checkers_TahiraKhan\Checkers_TahiraKhan\obj\Debug\Checkers_TahiraKhan.csprojResolveAssemblyReference.cache
