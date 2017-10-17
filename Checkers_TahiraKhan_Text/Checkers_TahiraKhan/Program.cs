@@ -55,7 +55,7 @@ namespace Checkers_TahiraKhan40227807
 
             void PlayervsPlayer()
             {
-                CheckersBoard board = new CheckersBoard();
+                Board board = new Board();
                 board.Initboard();
                 board.printBoard();
 
