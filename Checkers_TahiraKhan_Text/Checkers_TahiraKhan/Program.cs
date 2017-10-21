@@ -10,11 +10,7 @@ namespace Checkers_TahiraKhan40227807
     {
         static void Main(string[] args)
         {
-
-
             char choice = ' ';
-
-
             do
             {
                 DisplayMenu();
@@ -58,9 +54,7 @@ namespace Checkers_TahiraKhan40227807
                 Board board = new Board();
                 board.Initboard();
                 board.printBoard();
-
                 board.MakeMove();
-
             }
             void PlayervsAI()
             {
