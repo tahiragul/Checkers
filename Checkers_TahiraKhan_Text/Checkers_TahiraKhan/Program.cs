@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Checkers_TahiraKhan;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,18 +9,19 @@ namespace Checkers_TahiraKhan40227807
 {
     public class Program
     {
+        
         static void Main(string[] args)
         {
+            Games game;
+            Menu menu = new Menu();
             char choice = ' ';
+            //display menue and allow user to select an option
             do
             {
-                DisplayMenu();
-                Console.WriteLine("Please enter your choice:");
-
+                menu.DisplayMenu();
+                Console.Write("Please enter your choice: ");
                 choice = Console.ReadKey().KeyChar;
                 Console.WriteLine("\n");
-
-
                 switch (choice)
                 {
                     case '1':
@@ -33,31 +35,24 @@ namespace Checkers_TahiraKhan40227807
                         break;
                 }
             }
-            while (choice != '4');
-            void DisplayMenu()
-            {
-                Console.WriteLine("*********Checkers**********");
-                Console.WriteLine("***************************");
-                Console.WriteLine("    1. Player vs Player");
-                Console.WriteLine("    2. Player vs AI");
-                Console.WriteLine("    3. AI vs AI");
-                Console.WriteLine("    4. Exit");
-                Console.WriteLine("****************************");
-
-                // Console.ReadLine();
-            }
-
-
-
+            while (choice != '3');
+            
+            //method to play player vs player game
             void PlayervsPlayer()
             {
-                Board board = new Board();
-                board.Initboard();
-                board.printBoard();
-                board.MakeMove();
+                Board checkersboard = new Board();
+                checkersboard.Initboard();
+                checkersboard.PrintBoard();
+                game = new Games(checkersboard);//pass the board instance to game
+                game.MakeMove();
             }
             void PlayervsAI()
             {
+                Board checkersboard = new Board();
+                checkersboard.Initboard();
+                checkersboard.PrintBoard();
+                game = new Games(checkersboard);//pass the board instance to game
+                game.MakeMove();
 
             }
 
