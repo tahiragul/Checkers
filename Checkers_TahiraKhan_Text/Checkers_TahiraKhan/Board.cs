@@ -16,7 +16,7 @@ namespace Checkers_TahiraKhan40227807
         private char empty = ' ';
         public char[,] checkersboard = new char[8, 8];
         public Menu menu = new Menu();
-
+ 
         public Board()
         {
             this.checkersboard = new char[8, 8];
@@ -81,8 +81,9 @@ namespace Checkers_TahiraKhan40227807
             }
 
             Console.WriteLine("  _________________________________________________");
-            Console.WriteLine("     0      1     2     3     4     5     6     7");
+            Console.WriteLine("     0      1     2     3     4     5     6     7");            
         }
+        
     }
 }
     

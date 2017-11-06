@@ -16,13 +16,12 @@ namespace Checkers_TahiraKhan
         private bool player1Turn = true;
         private Player1 player1 = new Player1();
         private Player2 player2 = new Player2();
-        
-        List<Board> history = new List<Board>();
+        Queue<char[,]> history = new Queue<char[,]>();
+        List<char[,]> move = new List<char[,]>();
+        List<char[,]> moveUndoList = new List<char[,]>();
         private Board board;
-        private Board newBoard;
         private Menu menu = new Menu();
-        //List<char[,]> history = new List<char[,]>();
-        List<char> history1 = new List<char>();
+        
         private bool gameEnd = false;
         Movements movements;
 
@@ -56,9 +55,9 @@ namespace Checkers_TahiraKhan
             }
             return true;
         }
-
         /// <summary>
-        /// 
+        /// recieve player's input for source and destination cells
+        /// and call the movements check and execute that move
         /// </summary>
         public void MakeMove()
         {
@@ -73,7 +72,7 @@ namespace Checkers_TahiraKhan
                     
                     try
                     {
-                        Console.Write("Please enter cell position to move player:");
+                        Console.Write("Please enter source cell position:");
                         string s = Console.ReadLine();
                         string[] values = s.Split(',');
                         sourceRow = int.Parse(values[0]);
@@ -96,7 +95,7 @@ namespace Checkers_TahiraKhan
                     {
                         try
                         {
-                            Console.Write("Please enter cell position to move player:");
+                            Console.Write("Please enter destination cell position:");
                             string s = Console.ReadLine();
                             string[] values = s.Split(',');
                             destinationRow = int.Parse(values[0]);
@@ -113,32 +112,37 @@ namespace Checkers_TahiraKhan
                             Console.WriteLine("Inavalid selection");
                             break;
                         }
-                        else if (movements.player1Turn)
+                        else if ((movements.player1Turn) && (board.checkersboard[sourceRow, sourceCol] != ' '))
                         {
                             movements.movePlayer1(sourceRow, sourceCol, destinationRow, destinationCol);
                         }
-                        else if (movements.player1Turn != true)
+                        else if (movements.player1Turn != true )
                         {
                             movements.movePlayer2(sourceRow, sourceCol, destinationRow, destinationCol);
                         }
                     }
-                    newBoard.checkersboard = board.checkersboard;                        
-                    history.Add(newBoard);
+                    history.Enqueue(board.checkersboard);
+                    move.Add(board.checkersboard);
                     menu.DisplayCommands();
-                    reDraw();
+                    board.PrintBoard();
+                    
+
+
+
                     Console.Write("Please Enter command: ");
                     choice = Console.ReadKey().KeyChar;
                     Console.WriteLine("\n");
+                
+
                     switch (choice)
                     {
                         case 'c':
-                            choice = 'y';
                             break;
                         case 'u':
-                            //  Undo();
+                            Undo();
                             break;
                         case 'r':
-                            //  Redo();
+                            Redo();
                             break;
                         case 'e':
                             break;
@@ -154,75 +158,60 @@ namespace Checkers_TahiraKhan
                 decision = Console.ReadKey().KeyChar;
             }
             while (!gameEnd && decision != 'y');
-            displayHistory1();
+            DisplayHistory();
         }
         /// <summary>
-        /// To redraw booard after every move
+        /// 
         /// </summary>
-        public void reDraw()
+        public void DisplayHistory()
         {
-            Console.WriteLine("     0      1     2     3     4     5     6     7");
-
-            for (int row = 0; row < 8; row++)
-            {
-                Console.WriteLine("  _________________________________________________");
-                Console.Write(row);
-
-                for (int col = 0; col < 8; col++)
+            //while (history.Count > 0)
+           // {
+                foreach(char[,] contents in history)
                 {
-                    Console.Write("  |  " + movements.board.checkersboard[row, col]);
-                    
+                    board.checkersboard = contents;
+                    board.PrintBoard();
 
                 }
-                Console.Write("  |  \n");
-            }
-            Console.WriteLine("  _________________________________________________");
-            Console.WriteLine("     0      1     2     3     4     5     6     7");
-            
-        }
-        public void displayHistory()
-        {
-            Console.WriteLine("     0      1     2     3     4     5     6     7");
-
-            for (int row = 0; row < 8; row++)
-            {
-                Console.WriteLine("  _________________________________________________");
-                Console.Write(row);
-
-                for (int col = 0; col < history1.Count; col++)
-                {
-                    Console.Write("  |  " + history1);
-                    
-                }
-                Console.Write("  |  \n");
-            }
-            Console.WriteLine("  _________________________________________________");
-            Console.WriteLine("     0      1     2     3     4     5     6     7");
-        }
-        public void displayHistory1()
-        {
-           foreach(object board in history)
-            {
-                Console.WriteLine("     0      1     2     3     4     5     6     7");
-
-                for (int row = 0; row < 8; row++)
-                {
-                    Console.WriteLine("  _________________________________________________");
-                    Console.Write(row);
-
-                    for (int col = 0; col < 8; col++)
-                    {
-                        Console.Write("  |  " + newBoard.checkersboard[row,col]);
-
-                    }
-                    Console.Write("  |  \n");
-                }
-                Console.WriteLine("  _________________________________________________");
-                Console.WriteLine("     0      1     2     3     4     5     6     7");
-
+               // char[,] contents = history.Dequeue();
+                //movements.board.checkersboard = content;
                 
+               
+
+                if (history.Count > 0)
+                {
+                    Console.WriteLine("Empty History");
+
+                }
+           // }
+        }
+        public void Undo()
+        {
+            if (move.Count > 0)
+            {
+                char[,] content = move[move.Count - 1];
+                moveUndoList.Add(content);
+                move.Remove(content);
+                board.checkersboard = content;
+                board.PrintBoard();
+            }
+            else
+            {
+                Console.WriteLine("Nothing to undo");
             }
         }
+        public void Redo()
+        {
+            if (moveUndoList.Count > 0)
+            {
+                char[,] content = moveUndoList[moveUndoList.Count - 1];
+                moveUndoList.Remove(content);
+                board.checkersboard = content;
+                board.PrintBoard();
+            }
+        }
+
+
 
     }
 }

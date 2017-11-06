@@ -15,6 +15,7 @@ namespace Checkers_TahiraKhan40227807
             Games game;
             Menu menu = new Menu();
             char choice = ' ';
+            bool isAI = false;
             //display menue and allow user to select an option
             do
             {
@@ -48,6 +49,7 @@ namespace Checkers_TahiraKhan40227807
             }
             void PlayervsAI()
             {
+                
                 Board checkersboard = new Board();
                 checkersboard.Initboard();
                 checkersboard.PrintBoard();
