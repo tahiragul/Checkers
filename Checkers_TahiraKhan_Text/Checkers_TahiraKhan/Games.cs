@@ -69,7 +69,9 @@ namespace Checkers_TahiraKhan
             {
                 do
                 {
-                    
+                   
+                    move.Add(board.checkersboard);
+                    menu.DisplayCommands();
                     try
                     {
                         Console.Write("Please enter source cell position:");
@@ -121,9 +123,8 @@ namespace Checkers_TahiraKhan
                             movements.movePlayer2(sourceRow, sourceCol, destinationRow, destinationCol);
                         }
                     }
+
                     history.Enqueue(board.checkersboard);
-                    move.Add(board.checkersboard);
-                    menu.DisplayCommands();
                     board.PrintBoard();
                     
 
@@ -139,7 +140,7 @@ namespace Checkers_TahiraKhan
                         case 'c':
                             break;
                         case 'u':
-                            Undo();
+                            Undo(sourceRow, sourceCol, destinationRow, destinationCol);
                             break;
                         case 'r':
                             Redo();
@@ -185,14 +186,16 @@ namespace Checkers_TahiraKhan
                 }
            // }
         }
-        public void Undo()
+        public void Undo(int sourceRow, int sourceCol, int destinationRow,int destinationCol )
         {
             if (move.Count > 0)
             {
                 char[,] content = move[move.Count - 1];
                 moveUndoList.Add(content);
                 move.Remove(content);
-                board.checkersboard = content;
+                Console.WriteLine(move.Count);
+                board.checkersboard = move[move.Count - 1];
+                board.checkersboard[destinationRow,destinationCol] = board.checkersboard[sourceRow,sourceCol];
                 board.PrintBoard();
             }
             else
