@@ -108,7 +108,7 @@ namespace Checkers_TahiraKhan
         public const string WHITE = "Images\\whitePiece.jpg";
         public const string WHITE_HIGHLIGHTED = "Images\\wphl.png";
         public const string BLACK = "Images\\blackPiece1.png";
-        public const string BLACK_HIGHLETD = "Images\\bphl.png";
+        public const string BLACK_HIGHLETD = "Images\\bphl.jpg";
 
         public const string WHITE_KING = "Images\\white_king.png";
         public const string WHITE_KING_HIGHLIGHTED = "Images\\wphl.png";

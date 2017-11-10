@@ -34,7 +34,6 @@ namespace Checkers_TahiraKhan
             board = myBoard;
 
         }
-
         /// <summary>
         /// check players turn and display message asking player to chose right cell position
         /// </summary>

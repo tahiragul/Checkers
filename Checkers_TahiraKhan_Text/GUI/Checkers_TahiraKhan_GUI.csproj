@@ -101,20 +101,21 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\blackPiece.png">
+    <Content Include="Images\wphl.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Images\wphl.png" />
-    <Resource Include="Images\black_kinghl.png">
+    <Content Include="Images\black_kinghl.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </Content>
     <Content Include="Images\black_king.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Resource Include="Images\white_kinghl.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\bphl.jpg" />
+    <Content Include="Images\bphl.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\white_king.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
