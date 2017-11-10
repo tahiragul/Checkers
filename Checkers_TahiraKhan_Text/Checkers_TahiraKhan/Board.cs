@@ -28,35 +28,28 @@ namespace Checkers_TahiraKhan40227807
             {
                 for (int col = 0; col < 8; col++)
                 {
-                    checkersboard[row, col] = empty;          
-
-                }
-            }
-            for (int row = 0; row < 3; row++)
-            {
-                for (int col = 0; col < 8; col++)
-                {
-                    if (((row + col) % 2) == 0)
+                    checkersboard[row, col] = empty;
+                    if (row >= 0 && row < 3)
                     {
-                        checkersboard[row, col] = player1.Normal;
+                        if (((row + col) % 2) == 0)
+                        {
+                            checkersboard[row, col] = player1.Normal;
+                        }
+                        else
+                        {
+                            checkersboard[row, col] = empty;
+                        }
                     }
-                    else
+                    if (row >= 5  && row < 8)
                     {
-                        checkersboard[row, col] = empty;
-                    }
-                }
-            }
-            for (int row = 5; row < 8; row++)
-            {
-                for (int col = 0; col < 8; col++)
-                {
-                    if (((row + col) % 2) == 0)
-                    {
-                        checkersboard[row, col] = player2.Normal;
-                    }
-                    else
-                    {
-                        checkersboard[row, col] = empty;
+                        if (((row + col) % 2) == 0)
+                        {
+                            checkersboard[row, col] = player2.Normal;
+                        }
+                        else
+                        {
+                            checkersboard[row, col] = empty;
+                        }
                     }
                 }
             }

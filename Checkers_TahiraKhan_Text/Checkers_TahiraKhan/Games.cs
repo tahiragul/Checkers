@@ -17,11 +17,11 @@ namespace Checkers_TahiraKhan
         private Player1 player1 = new Player1();
         private Player2 player2 = new Player2();
         Queue<char[,]> history = new Queue<char[,]>();
-        List<char[,]> move = new List<char[,]>();
-        List<char[,]> moveUndoList = new List<char[,]>();
+        Stack<char[,]> move = new Stack<char[,]>();
+        Stack<char[,]> moveUndoList = new Stack<char[,]>();
         private Board board;
         private Menu menu = new Menu();
-        
+
         private bool gameEnd = false;
         Movements movements;
 
@@ -32,7 +32,7 @@ namespace Checkers_TahiraKhan
         public Games(Board myBoard)
         {
             board = myBoard;
-            
+
         }
 
         /// <summary>
@@ -59,88 +59,90 @@ namespace Checkers_TahiraKhan
         /// recieve player's input for source and destination cells
         /// and call the movements check and execute that move
         /// </summary>
-        public void MakeMove()
+        public bool MakeMove()
+        {
+            movements = new Movements(sourceRow, sourceCol, destinationRow, destinationCol, player1Turn, gameEnd, board);
+
+            try
+            {
+                Console.Write("Please enter source cell position:");
+                string s = Console.ReadLine();
+                string[] values = s.Split(',');
+                sourceRow = int.Parse(values[0]);
+                sourceCol = int.Parse(values[1]);
+
+
+                if (sourceRow < 0 || sourceCol > 7)
+                {
+                    Console.WriteLine("Inavalid selection");
+                    return false;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("not valid");
+            }
+
+            if (checkTurn(sourceRow, sourceCol))
+            {
+                try
+                {
+                    Console.Write("Please enter destination cell position:");
+                    string s = Console.ReadLine();
+                    string[] values = s.Split(',');
+                    destinationRow = int.Parse(values[0]);
+                    destinationCol = int.Parse(values[1]);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("not valid");
+                }
+
+
+                if (destinationCol < 0 || destinationCol > 7)
+                {
+                    Console.WriteLine("Inavalid selection");
+                    return false;
+                }
+                else if ((movements.player1Turn) && (board.checkersboard[sourceRow, sourceCol] != ' '))
+                {
+                    movements.movePlayer1(sourceRow, sourceCol, destinationRow, destinationCol);
+                    player1Turn = false;
+                    return true;
+                }
+                else if (movements.player1Turn != true)
+                {
+                    movements.movePlayer2(sourceRow, sourceCol, destinationRow, destinationCol);
+                    player1Turn = true;
+                    return true;
+                }
+                return true;
+                history.Enqueue(board.checkersboard);
+                move.Push(board.checkersboard);
+                
+            }
+            return true;
+            
+            //MakeCoice();
+        }
+        public void MakeChoice()
         {
             char decision = 'n';
             char choice = 'c';
-            movements = new Movements(sourceRow, sourceCol, destinationRow, destinationCol, player1Turn, gameEnd, board);
-
             do
             {
                 do
                 {
-                   
-                    move.Add(board.checkersboard);
-                    menu.DisplayCommands();
-                    try
-                    {
-                        Console.Write("Please enter source cell position:");
-                        string s = Console.ReadLine();
-                        string[] values = s.Split(',');
-                        sourceRow = int.Parse(values[0]);
-                        sourceCol = int.Parse(values[1]);
-
-
-                        if (sourceRow < 0 || sourceCol > 7)
-                        {
-                            Console.WriteLine("Inavalid selection");
-                            break;
-                            
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("not valid");
-                    }
-
-                    if (checkTurn(sourceRow, sourceCol))
-                    {
-                        try
-                        {
-                            Console.Write("Please enter destination cell position:");
-                            string s = Console.ReadLine();
-                            string[] values = s.Split(',');
-                            destinationRow = int.Parse(values[0]);
-                            destinationCol = int.Parse(values[1]);
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine("not valid");
-                        }
-
-
-                        if (destinationCol < 0 || destinationCol > 7)
-                        {
-                            Console.WriteLine("Inavalid selection");
-                            break;
-                        }
-                        else if ((movements.player1Turn) && (board.checkersboard[sourceRow, sourceCol] != ' '))
-                        {
-                            movements.movePlayer1(sourceRow, sourceCol, destinationRow, destinationCol);
-                        }
-                        else if (movements.player1Turn != true )
-                        {
-                            movements.movePlayer2(sourceRow, sourceCol, destinationRow, destinationCol);
-                        }
-                    }
-
-                    history.Enqueue(board.checkersboard);
-                    board.PrintBoard();
-                    
-
-
-
-                    Console.Write("Please Enter command: ");
-                    choice = Console.ReadKey().KeyChar;
-                    Console.WriteLine("\n");
-                
-
                     switch (choice)
                     {
                         case 'c':
+                            MakeMove();
+                            menu.DisplayCommands();
+                            board.PrintBoard();
                             break;
                         case 'u':
-                            Undo(sourceRow, sourceCol, destinationRow, destinationCol);
+                            Undo();
                             break;
                         case 'r':
                             Redo();
@@ -152,6 +154,10 @@ namespace Checkers_TahiraKhan
                             Console.WriteLine("Invalid Choice");
                             break;
                     }
+                    Console.Write("Please Enter command: ");
+                    choice = Console.ReadKey().KeyChar;
+                    Console.WriteLine("\n");
+
                     movements.CheckWin();
                 }
                 while (choice != 'e' && movements.gameEnd != true); //false
@@ -161,41 +167,31 @@ namespace Checkers_TahiraKhan
             while (!gameEnd && decision != 'y');
             DisplayHistory();
         }
+
         /// <summary>
         /// 
         /// </summary>
         public void DisplayHistory()
         {
-            //while (history.Count > 0)
-           // {
-                foreach(char[,] contents in history)
-                {
-                    board.checkersboard = contents;
-                    board.PrintBoard();
+            foreach (char[,] contents in history)
+            {
+                board.checkersboard = contents;
+                board.PrintBoard();
 
-                }
-               // char[,] contents = history.Dequeue();
-                //movements.board.checkersboard = content;
-                
-               
+            }
+            if (history.Count > 0)
+            {
+                Console.WriteLine("Empty History");
 
-                if (history.Count > 0)
-                {
-                    Console.WriteLine("Empty History");
-
-                }
-           // }
+            }
         }
-        public void Undo(int sourceRow, int sourceCol, int destinationRow,int destinationCol )
+        public void Undo()
         {
             if (move.Count > 0)
             {
-                char[,] content = move[move.Count - 1];
-                moveUndoList.Add(content);
-                move.Remove(content);
-                Console.WriteLine(move.Count);
-                board.checkersboard = move[move.Count - 1];
-                board.checkersboard[destinationRow,destinationCol] = board.checkersboard[sourceRow,sourceCol];
+                char[,] content = move.Pop();
+                moveUndoList.Push(content);
+                board.checkersboard = content;
                 board.PrintBoard();
             }
             else
@@ -207,14 +203,10 @@ namespace Checkers_TahiraKhan
         {
             if (moveUndoList.Count > 0)
             {
-                char[,] content = moveUndoList[moveUndoList.Count - 1];
-                moveUndoList.Remove(content);
+                char[,] content = moveUndoList.Pop();
                 board.checkersboard = content;
                 board.PrintBoard();
             }
         }
-
-
-
     }
 }

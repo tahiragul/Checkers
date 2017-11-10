@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 namespace Checkers_TahiraKhan40227807
 {
     public class Program
-    {
-        
+    {     
         static void Main(string[] args)
         {
             Games game;
@@ -45,7 +44,7 @@ namespace Checkers_TahiraKhan40227807
                 checkersboard.Initboard();
                 checkersboard.PrintBoard();
                 game = new Games(checkersboard);//pass the board instance to game
-                game.MakeMove();
+                game.MakeChoice();
             }
             void PlayervsAI()
             {
