@@ -24,7 +24,7 @@ namespace Checkers_TahiraKhan
         private Button replayButton;
         public TextBlock instructionBlock { get; set; }
         public Border gridBorder { get; set; }
-        public Grid appGrid { get; set; } // instance of Grid control
+        public Grid appGrid { get; set; } // 
         public Player Player1 { get; set; }
         public Player Player2 { get; set; }
         public Board board { get; set; }//propert of instance to access Board class
@@ -209,15 +209,12 @@ namespace Checkers_TahiraKhan
         public void UndoMovement()
         {
             if (Movements.Count > 0)
-            {
-                if (Movements.Count > 0)
-                {
-                    Move move = Movements.Pop();
-                    move.Undo(this);
-                    move.SourceCell.UnSelect();
-                    move.DestinationCell.UnSelect();
-                    this.board.SetTurn(move.Piece.Owner);
-                }
+            {  
+                Move move = Movements.Pop();
+                move.Undo(this);
+                move.SourceCell.UnSelect();
+                move.DestinationCell.UnSelect();
+                this.board.SetTurn(move.Piece.Owner);   
             }
         }
         protected void ReDoButton_Click(object sender, RoutedEventArgs e)

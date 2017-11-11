@@ -19,7 +19,6 @@ namespace Checkers_TahiraKhan
             this.SourceCell = SourceCell;
             this.DestinationCell = DestinationCell;
             Piece = SourceCell.CurrentPiece;
-            Status = STATUS_NEW;
         }
         /// <summary>
         /// recieve game window as parameter and add a move to list
@@ -56,7 +55,5 @@ namespace Checkers_TahiraKhan
             }
             return true;
         }
-        public const string STATUS_NEW = "NEW";
-        public const string STATUS_COMPLETE = "COMPLETE";
     }
 }

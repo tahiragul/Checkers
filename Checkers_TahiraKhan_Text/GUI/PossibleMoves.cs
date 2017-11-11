@@ -8,8 +8,7 @@ namespace Checkers_TahiraKhan
 {
     public class PossibleMoves
     {
-        public List<Move> All = new List<Move>();
-        public List<Move> RejectedList = new List<Move>();
+        public List<Move> ALLMoves = new List<Move>();
         public PossibleMoves(Player player, Board board)
         {
             foreach (BoardPiece piece in player.ActivePieces)
@@ -26,7 +25,7 @@ namespace Checkers_TahiraKhan
                     if (destinationCell.CurrentPiece == null)
                     {
                         Move move = new Move(sourceCell, destinationCell);
-                        All.Add(move);
+                        ALLMoves.Add(move);
                     }
                 }
                 possibleX = piece.X + 2;
@@ -37,7 +36,7 @@ namespace Checkers_TahiraKhan
                     if (destinationCell.CurrentPiece == null)
                     {
                         Move move = new Move(sourceCell, destinationCell);
-                        All.Add(move);
+                        ALLMoves.Add(move);
                     }
                 }
                 possibleX = piece.X - 2;
@@ -48,7 +47,7 @@ namespace Checkers_TahiraKhan
                     if (destinationCell.CurrentPiece == null)
                     {
                         Move move = new Move(sourceCell, destinationCell);
-                        All.Add(move);
+                        ALLMoves.Add(move);
                     }
                 }
                 possibleX = piece.X - 2;
@@ -59,7 +58,7 @@ namespace Checkers_TahiraKhan
                     if (destinationCell.CurrentPiece == null)
                     {
                         Move move = new Move(sourceCell, destinationCell);
-                        All.Add(move);
+                        ALLMoves.Add(move);
                     }
                 }
                 //1 step
@@ -71,7 +70,7 @@ namespace Checkers_TahiraKhan
                     if (destinationCell.CurrentPiece == null)
                     {
                         Move move = new Move(sourceCell, destinationCell);
-                        All.Add(move);
+                        ALLMoves.Add(move);
                     }
                 }
                 possibleX = piece.X + 1;
@@ -82,7 +81,7 @@ namespace Checkers_TahiraKhan
                     if (destinationCell.CurrentPiece == null)
                     {
                         Move move = new Move(sourceCell, destinationCell);
-                        All.Add(move);
+                        ALLMoves.Add(move);
                     }
                 }
 
@@ -94,7 +93,7 @@ namespace Checkers_TahiraKhan
                     if (destinationCell.CurrentPiece == null)
                     {
                         Move move = new Move(sourceCell, destinationCell);
-                        All.Add(move);
+                        ALLMoves.Add(move);
                     }
                 }
 
@@ -106,22 +105,17 @@ namespace Checkers_TahiraKhan
                     if (destinationCell.CurrentPiece == null)
                     {
                         Move move = new Move(sourceCell, destinationCell);
-                        All.Add(move);
+                        ALLMoves.Add(move);
                     }
                 }
             }
         }
         public Move GetNextBestMove()
-        {
-            //Random 
-            if (All.Count > 0)
-                return All[0];
+        {           
+            if (ALLMoves.Count > 0)
+                return ALLMoves[0];
             else
                 return null;
-        }
-        public void AddToRejected(Move move)
-        {
-            RejectedList.Add(move);
         }
     }
 }

@@ -107,7 +107,7 @@ namespace Checkers_TahiraKhan
                     }
                     else if (pieceColor == game.Player2.Color)
                     {
-                        game.Player2.ActivePieces.Add(Piece);//add to list of active pieces for player1
+                        game.Player2.ActivePieces.Add(Piece);//add to list of active pieces for player2
                     }
 
                 }
@@ -163,11 +163,11 @@ namespace Checkers_TahiraKhan
             }
             if (turn.isAI)
             {
-                game.instructionBlock.Text = $"{turn.Color} Turn: Use mouse to move";//We need to set the value in a Dispatcher.Invoke as AI running on a different thred.
+                game.instructionBlock.Text = $"{turn.Color} Turn: Use mouse to move";
             }
             else
             {
-                game.instructionBlock.Text = $"{turn.Color} Turn: Use mouse to move";//We need to set the value in a Dispatcher.Invoke as AI running on a different thred.
+                game.instructionBlock.Text = $"{turn.Color} Turn: Use mouse to move";
             }
             return turn;
         }
@@ -345,7 +345,7 @@ namespace Checkers_TahiraKhan
             Player p = SetTurn(game.Player1);
             if (turn.isAI == true)
             {
-                StartAI(); //If AI then kickstart the AI algorithm
+                StartAI(); 
             }
         }
         public async void StartAI()

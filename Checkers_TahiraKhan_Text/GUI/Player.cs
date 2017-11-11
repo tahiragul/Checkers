@@ -14,7 +14,7 @@ namespace Checkers_TahiraKhan
         public int selectMove;
         public int BoardRowStart;//0 or 7
         //constructor to recieve and initialise player properties 
-        public Player(int Side, string Color, bool isAI = true)
+        public Player(int Side, string Color, bool isAI)
         {
             this.Color = Color;
             this.isAI = isAI;
@@ -37,8 +37,7 @@ namespace Checkers_TahiraKhan
                     result = board.CompleteMove(move);
                     if (result == false)
                     {
-                        possibleMoves.AddToRejected(move);
-                        possibleMoves.All.Remove(move);
+                        possibleMoves.ALLMoves.Remove(move);
                         move = possibleMoves.GetNextBestMove();
                     }
                 }
