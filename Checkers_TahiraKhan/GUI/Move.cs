@@ -21,8 +21,7 @@ namespace Checkers_TahiraKhan
             Piece = SourceCell.CurrentPiece;
         }
         /// <summary>
-        /// recieve game window as parameter and add a move to list
-        /// return true once the move is complete
+        /// set pieces at destinationation cell and clear source cell
         /// </summary>
         /// <param name="game"></param>
         /// <returns></returns>
@@ -34,14 +33,13 @@ namespace Checkers_TahiraKhan
             return true;
         }
         /// <summary>
-        /// 
+        /// set piece back to source cell and clear destination cell 
         /// </summary>
         /// <param name="game"></param>
         /// <returns></returns>
         public bool Undo(Game game)
         {
-
-            SourceCell.SetPiece(Piece); //set 
+            SourceCell.SetPiece(Piece); 
             DestinationCell.SetPiece(null);
             game.UndoMovements.Push(this);//add move to a list in the game class
             if (KilledPiece != null)

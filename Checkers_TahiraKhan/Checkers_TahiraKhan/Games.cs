@@ -78,7 +78,7 @@ namespace Checkers_TahiraKhan
 
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Console.WriteLine("not valid");
             }
@@ -93,7 +93,7 @@ namespace Checkers_TahiraKhan
                     destinationRow = int.Parse(values[0]);
                     destinationCol = int.Parse(values[1]);
                 }
-                catch (Exception ex)
+                catch (Exception )
                 {
                     Console.WriteLine("not valid");
                 }

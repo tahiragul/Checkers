@@ -154,11 +154,7 @@ namespace Checkers_TahiraKhan
                             content[i, j].MouseDown += PieceMouseUp;
                         }
                     }
-                    else
-                    {
-            
-
-                    }
+                    
                 }
             }
             if (turn.isAI)
@@ -217,7 +213,6 @@ namespace Checkers_TahiraKhan
                 SelectedCell.UnSelect();
                 move.DestinationCell.UnSelect();
                 SelectedCell = null;
-                game.UndoMovements = new Stack<Move>();
                 result = true;
             }
             else
@@ -348,6 +343,9 @@ namespace Checkers_TahiraKhan
                 StartAI(); 
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public async void StartAI()
         {
             if (turn.isAI == true)
@@ -361,22 +359,25 @@ namespace Checkers_TahiraKhan
                 }
             }
         }
-        
+        /// <summary>
+        /// check all the active pieces for both players
+        /// if any player lose all the pieces then the other player is a winner
+        /// </summary>
         public void CheckWin()
         {
             if (game.Player1.ActivePieces.Count < 1)
             {
                 MessageBox.Show("Player2 is  a winner");
-
+                game.Player1 = null;
+                game.Player1 = null;
+                game.Close();
             }
             else if (game.Player2.ActivePieces.Count < 1)
             {
                 MessageBox.Show("Player1 is a winner");
                 game.Player1 = null;
                 game.Player1 = null;
-                game.Close();
-
-             
+                game.Close();         
             }
         }
         // this method will create an image 

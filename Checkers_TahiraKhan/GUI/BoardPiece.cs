@@ -12,8 +12,8 @@ namespace Checkers_TahiraKhan
 {
     public class BoardPiece
     {
-        public int X { get; set; } //x coordination
-        public int Y { get; set; } // y coordination
+        public int X { get; set; } 
+        public int Y { get; set; } 
         public string DefaultImage { get; set; }
         public string DefaultHighlightImage { get; set; }
         public Player Owner { get; set; }
@@ -21,25 +21,24 @@ namespace Checkers_TahiraKhan
         public bool IsKing = false;
         public int RowForKing { get; set; }
         
-        public string Status;//Active, Dead
         /// <summary>
-        /// recieve player instance to set image depending on player's colour
+        /// set image depending on player's colour
         /// by default the player 1 is black and player2 is white
         /// </summary>
         /// <param name="player"></param>
         public BoardPiece(Player player)
         {
-            if(player.isWhite()) // if player is white
+            if(player.isWhite()) 
             {
                 DefaultImage = WHITE;
             }
             else
             {
-                DefaultImage = BLACK; //if player is black
+                DefaultImage = BLACK; 
             }
             if(player.isWhite())
             {
-                DefaultHighlightImage = WHITE_HIGHLIGHTED;//set default highlight image
+                DefaultHighlightImage = WHITE_HIGHLIGHTED;
             }
             else
             {
@@ -54,8 +53,6 @@ namespace Checkers_TahiraKhan
             {
                 RowForKing = player.BoardRowStart;// = 7;
             }
-            
-            Status = STATUS_ACTIVE;//
             Owner = player;
         }
         public bool isBlack()
@@ -77,6 +74,7 @@ namespace Checkers_TahiraKhan
                 return Player.WHITE;
             }
         }
+        //set king images
         public void MakeKing()
         {
             if (isBlack())
@@ -91,6 +89,7 @@ namespace Checkers_TahiraKhan
             }
             IsKing = true;            
         }
+
         public void MakeNormal()
         {
             if (isBlack())
@@ -114,8 +113,7 @@ namespace Checkers_TahiraKhan
         public const string WHITE_KING_HIGHLIGHTED = "Images\\wphl.png";
         public const string BLACK_KING = "Images\\black_king.png";
         public const string BLACK_KING_HIGHLIGHTED = "Images\\bphl.png";
-        public const string STATUS_ACTIVE = "Active";
-        public const string STATUS_DEAD = "Dead";
+       
     }
 
 

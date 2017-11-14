@@ -46,7 +46,6 @@
     <Compile Include="Games.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="Movements.cs" />
-    <Compile Include="Player.cs" />
     <Compile Include="Player1.cs" />
     <Compile Include="Player2.cs" />
     <Compile Include="Program.cs" />

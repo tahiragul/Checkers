@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 
 namespace Checkers_TahiraKhan
 {
+    /// <summary>
+    /// store list of all moves a player can make
+    /// </summary>
     public class PossibleMoves
     {
         public List<Move> ALLMoves = new List<Move>();
         public PossibleMoves(Player player, Board board)
         {
+            //look at each active piece for a player and and add to list of All moves
             foreach (BoardPiece piece in player.ActivePieces)
             {
                 BoardCell sourceCell = board.content[piece.Y, piece.X];
@@ -110,6 +114,7 @@ namespace Checkers_TahiraKhan
                 }
             }
         }
+        //chose first move from a list
         public Move GetNextBestMove()
         {           
             if (ALLMoves.Count > 0)

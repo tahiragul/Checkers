@@ -26,8 +26,6 @@ namespace Checkers_TahiraKhan
             bool result = false;
             if (isAI)
             {
-                //2 if #1 is return a Cell call SelectCellForMove(cell)
-                //3. if #2  is true then call SelectCellForMove(cell2)
                 PossibleMoves possibleMoves = new PossibleMoves(this, board);
 
                 Move move = possibleMoves.GetNextBestMove();

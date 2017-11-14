@@ -179,10 +179,7 @@ namespace Checkers_TahiraKhan
             Canvas.SetTop(UnDoButton, 200);
             Canvas.SetLeft(RedoButton, 650);
             Canvas.SetTop(RedoButton, 200);
-
         }
-
-
         //this method includes all the events 
         private void setupPageEvents()
         {
@@ -201,22 +198,29 @@ namespace Checkers_TahiraKhan
             Player1 = null;
             this.Close();
         }
+        /// <summary>
+        /// perform undo by remove last move from Movement stack
+        /// and pushing it into UndoMovement stack
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 
         protected void UnDoButton_Click(object sender, RoutedEventArgs e)
         {
-            UndoMovement();
-        }
-        public void UndoMovement()
-        {
             if (Movements.Count > 0)
-            {  
+            {
                 Move move = Movements.Pop();
                 move.Undo(this);
                 move.SourceCell.UnSelect();
                 move.DestinationCell.UnSelect();
-                this.board.SetTurn(move.Piece.Owner);   
+                this.board.SetTurn(move.Piece.Owner);
             }
         }
+        /// <summary>
+        /// remove the last move pushed in undoMovement stack
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void ReDoButton_Click(object sender, RoutedEventArgs e)
         {
             if (UndoMovements.Count > 0)
@@ -224,6 +228,7 @@ namespace Checkers_TahiraKhan
                 Move move = UndoMovements.Pop();
                 move.Complete(this);
                 this.board.ProcessKilledPiece(move);
+                this.board.ProcessKingMove(move);
                 move.SourceCell.UnSelect();
                 move.DestinationCell.UnSelect();
                 this.board.SetTurn(move.Piece.Owner);
