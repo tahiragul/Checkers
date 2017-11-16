@@ -9,7 +9,7 @@ using System.Windows.Media.Imaging;
 namespace Checkers_TahiraKhan
 {
     /// <summary>
-    /// this class create board cells 
+    /// this class create board cells
     /// </summary>
     public class BoardCell : Image
     {
@@ -17,7 +17,8 @@ namespace Checkers_TahiraKhan
         public string DefaultHighlightImage { get; set; }
         public int X { get; set; }//x coordinate 
         public int Y { get; set; }//y coordinate
-        public BoardPiece CurrentPiece { get; set; }//declare currentPiece as BoardPiece type
+        public BoardPiece CurrentPiece { get; set; }
+
         public BoardCell(int Y, int X, string CellType)
         {
             DefaultImage = CellType;
@@ -95,12 +96,7 @@ namespace Checkers_TahiraKhan
             return true;
         }
         public const string WHITE_CELL = "Images\\white.bmp";
-        public const string WHITE_HIGHLIGHTED_CELL = "Images\\highlight.bmp";
         public const string BLACK_CELL = "Images\\black.gif";
-        public const string BLACK_HIGHLETD_CELL = "Images\\highlight.png";
-        public const string WHITE_KING = "Images\\white_king.png";
-        public const string WHITE_KING_HIGHLIGHTED = "Images\\white_kinghl.png";
-        public const string BLACK_KING = "Images\\black_king.png";
-        public const string BLACK_KING_HIGHLETD = "Images\\black_kinghl.png";
+      
     }
 }

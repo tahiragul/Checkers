@@ -33,7 +33,9 @@ namespace Checkers_TahiraKhan
             return true;
         }
         /// <summary>
-        /// set piece back to source cell and clear destination cell 
+        /// set piece back to source cell and clear destination cell
+        /// draw an killed piece back
+        /// if king was made during last move make it normal
         /// </summary>
         /// <param name="game"></param>
         /// <returns></returns>

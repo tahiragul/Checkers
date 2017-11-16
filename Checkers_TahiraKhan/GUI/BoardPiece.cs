@@ -7,7 +7,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
-
+/// <summary>
+/// set images for player's pieces
+/// </summary>
 namespace Checkers_TahiraKhan
 {
     public class BoardPiece
@@ -47,11 +49,11 @@ namespace Checkers_TahiraKhan
             //
             if (player.BoardRowStart == 0)
             {
-                RowForKing = player.BoardRowStart;// = 0;
+                RowForKing = player.BoardRowStart;
             }
             else
             {
-                RowForKing = player.BoardRowStart;// = 7;
+                RowForKing = player.BoardRowStart;
             }
             Owner = player;
         }
@@ -112,7 +114,7 @@ namespace Checkers_TahiraKhan
         public const string WHITE_KING = "Images\\white_king.png";
         public const string WHITE_KING_HIGHLIGHTED = "Images\\wphl.png";
         public const string BLACK_KING = "Images\\black_king.png";
-        public const string BLACK_KING_HIGHLIGHTED = "Images\\bphl.png";
+        public const string BLACK_KING_HIGHLIGHTED = "Images\\black_kinghl.png";
        
     }
 

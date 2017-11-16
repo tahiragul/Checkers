@@ -101,6 +101,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\background.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\wphl.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

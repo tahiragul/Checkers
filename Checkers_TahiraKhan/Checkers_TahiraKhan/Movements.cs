@@ -65,7 +65,6 @@ namespace Checkers_TahiraKhan
                     board.checkersboard[destinationRow, destinationCol] = player1.King;
                     board.checkersboard[sourceRow, sourceCol] = empty;
                     player1Turn = false;
-
                 }
                 else
                 {
@@ -79,7 +78,6 @@ namespace Checkers_TahiraKhan
                 //error();
                 Console.WriteLine("Invalid move");
             }
-
         }
         /// <summary>
         /// This method is called and proccessed 

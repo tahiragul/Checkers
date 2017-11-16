@@ -24,6 +24,14 @@ namespace Checkers_TahiraKhan
             this.game = window;
         }
 
+        public Game Game
+        {
+            get => default(Game);
+            set
+            {
+            }
+        }
+
         /// <summary>
         /// draw board using 2D array with alternate black and white cells
         /// and then populate with pieces on the black cell 
@@ -113,7 +121,6 @@ namespace Checkers_TahiraKhan
                 }
             }
         }
-
         /// <summary>
         /// change players turn to force them to take alternate turn
         /// </summary>
@@ -153,8 +160,7 @@ namespace Checkers_TahiraKhan
                         {
                             content[i, j].MouseDown += PieceMouseUp;
                         }
-                    }
-                    
+                    }                    
                 }
             }
             if (turn.isAI)
@@ -174,10 +180,11 @@ namespace Checkers_TahiraKhan
             if (result)
             {
                 ChangeTurn();
-                StartAI();//incase the opponet is an AI
+                StartAI();
             }
         }
         /// <summary>
+        /// recieve selected cell
         /// check if the selectected cell has got a piece
         /// </summary>
         /// <param name="cell"></param>
@@ -238,11 +245,11 @@ namespace Checkers_TahiraKhan
             int distanceY = 0;
             distanceX = move.DestinationCell.X - move.SourceCell.X;
             distanceY = move.DestinationCell.Y - move.SourceCell.Y;
-            if ((distanceY == 1 || distanceY == -1) && (distanceX == 1 || distanceX == -1))
+            if ((distanceY == 1 || distanceY == -1) && (distanceX == 1 || distanceX == -1))//for single diagonal jump
             {
                 result = true;
             }
-            else if (GetKilledPieceCell(move) != null)
+            else if (GetKilledPieceCell(move) != null)// for jump
             {
                 result = true;
             }
@@ -266,7 +273,7 @@ namespace Checkers_TahiraKhan
             {
                 int High;
                 int Low;
-                if (move.Piece.Owner.BoardRowStart == 0)
+                if (move.Piece.Owner.BoardRowStart == 0)//when the moving pieces belong to a player of top row that is black
                 {
                     High = move.DestinationCell.Y;//row number greater than source cell
                     Low = move.SourceCell.Y;
@@ -276,7 +283,7 @@ namespace Checkers_TahiraKhan
                     High = move.SourceCell.Y;
                     Low = move.DestinationCell.Y;
                 }
-                result = High > Low;
+                result = High > Low;//
             }
             return result;
         }
@@ -294,7 +301,7 @@ namespace Checkers_TahiraKhan
             distanceX = move.DestinationCell.X - move.SourceCell.X;
             distanceY = move.DestinationCell.Y - move.SourceCell.Y;
 
-            if ((distanceY == 2 || distanceY == -2) && (distanceX == 2 || distanceX == -2))
+            if ((distanceY == 2 || distanceY == -2) && (distanceX == 2 || distanceX == -2))//for jump
             {
                 int MidX;
                 int MidY;
@@ -321,6 +328,7 @@ namespace Checkers_TahiraKhan
             }
             return null;
         }
+        //
         public void ProcessKilledPiece(Move move)
         {
             if (move != null)
@@ -365,19 +373,25 @@ namespace Checkers_TahiraKhan
         /// </summary>
         public void CheckWin()
         {
-            if (game.Player1.ActivePieces.Count < 1)
+            if (game.Player1.ActivePieces.Count <= 1)
             {
                 MessageBox.Show("Player2 is  a winner");
                 game.Player1 = null;
                 game.Player1 = null;
                 game.Close();
+                MainWindow mainwindow = new MainWindow();
+                mainwindow.Show();
+
             }
-            else if (game.Player2.ActivePieces.Count < 1)
+            else if (game.Player2.ActivePieces.Count <= 1)
             {
                 MessageBox.Show("Player1 is a winner");
                 game.Player1 = null;
                 game.Player1 = null;
-                game.Close();         
+                game.Close();
+                MainWindow mainwindow = new MainWindow();
+                mainwindow.Show();
+
             }
         }
         // this method will create an image 

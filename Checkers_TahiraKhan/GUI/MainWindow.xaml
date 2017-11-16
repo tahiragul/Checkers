@@ -8,13 +8,12 @@
         Title="MainWindow" Height="350" Width="525">
     <Grid>
         <Grid.Background>
-            <ImageBrush  />
+            <ImageBrush ImageSource="Images/background.jpg" Stretch="UniformToFill"/>
         </Grid.Background>
 
-
-        <Label Content="Checkers" HorizontalAlignment="Left" Margin="186,43,0,0" VerticalAlignment="Top" Width="109" Height="44" FontSize="24"/>
-        <Button x:Name="btnpp" Content="Player-Player" HorizontalAlignment="Left" Margin="205,117,0,0" VerticalAlignment="Top" Width="75" Click="HUMAN_VS_HUMAN_Click" Height="31"/>
-        <Button x:Name="btnpAI" Content="Player-AI" HorizontalAlignment="Left" Margin="205,163,0,0" VerticalAlignment="Top" Width="75" Click="HUMAN_VS_AI_Click" Height="31"/>
-        <Button x:Name="btnAIAI" Content="AI-AI" HorizontalAlignment="Left" Margin="205,210,0,0" VerticalAlignment="Top" Width="75" Click="AI_VS_AI_Click" Height="31"/>
+        <Label Content="Checkers" HorizontalAlignment="Left" Margin="186,43,0,0" VerticalAlignment="Top" Width="124" Height="44" FontSize="28" FontWeight="Bold"/>
+        <Button x:Name="btnpp" Content="Player vs Player" HorizontalAlignment="Left" Margin="205,104,0,0" VerticalAlignment="Top" Width="90" Click="HUMAN_VS_HUMAN_Click" Height="31"/>
+        <Button x:Name="btnpAI" Content="Player vs AI" HorizontalAlignment="Left" Margin="205,160,0,0" VerticalAlignment="Top" Width="90" Click="HUMAN_VS_AI_Click" Height="31"/>
+        <Button x:Name="btnAIAI" Content="AI vs AI" HorizontalAlignment="Left" Margin="205,213,0,0" VerticalAlignment="Top" Width="90" Click="AI_VS_AI_Click" Height="31"/>
     </Grid>
 </Window>

@@ -75,7 +75,6 @@ namespace Checkers_TahiraKhan
                 {
                     Console.WriteLine("Inavalid selection");
                     return false;
-
                 }
             }
             catch (Exception)
