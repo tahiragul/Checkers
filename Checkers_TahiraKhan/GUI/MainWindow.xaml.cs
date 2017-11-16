@@ -28,7 +28,7 @@ namespace Checkers_TahiraKhan
 
         /// <summary>
         /// this click button event instantiate the game object 
-        /// that is inheriting from window and pass the game's name
+        /// that is inheriting from window and pass the game's name and game type
         /// then open the game window
         /// </summary>
         /// <param name="sender"></param>

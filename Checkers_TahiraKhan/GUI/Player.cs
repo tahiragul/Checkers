@@ -9,8 +9,8 @@ namespace Checkers_TahiraKhan
         public string Name { get; set; }
         public string Color { get; set; }
         public bool isAI { get; set; }
-        public List<BoardPiece> ActivePieces = new List<BoardPiece>();
-        public List<BoardPiece> KilledPieces = new List<BoardPiece>();        
+        public Stack<BoardPiece> ActivePieces = new Stack<BoardPiece>();
+        public Stack<BoardPiece> KilledPieces = new Stack<BoardPiece>();
         public int selectMove;
         public int BoardRowStart;//0 or 7
         //constructor to recieve and initialise player properties 

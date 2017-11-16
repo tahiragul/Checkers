@@ -9,7 +9,7 @@ using System.Windows.Media.Imaging;
 namespace Checkers_TahiraKhan
 {
     /// <summary>
-    /// this class create board cells
+    /// this class create board cells 
     /// </summary>
     public class BoardCell : Image
     {
@@ -26,7 +26,7 @@ namespace Checkers_TahiraKhan
             this.X = X;
             this.Y = Y;
         }
-
+        //constructor with the piece
         public BoardCell(int Y, int X, string CellType, BoardPiece Piece)
         {
             DefaultImage = CellType;

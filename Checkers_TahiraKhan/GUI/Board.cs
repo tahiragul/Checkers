@@ -24,13 +24,6 @@ namespace Checkers_TahiraKhan
             this.game = window;
         }
 
-        public Game Game
-        {
-            get => default(Game);
-            set
-            {
-            }
-        }
 
         /// <summary>
         /// draw board using 2D array with alternate black and white cells
@@ -52,13 +45,13 @@ namespace Checkers_TahiraKhan
 
                 for (int j = 0; j < 8; j++)
                 {
-                    if (j % 2 == cellColor)// 0%2 = 0 mean white
+                    if (j % 2 == cellColor)
                     {
                         WhiteCell = true;
                     }
                     else
                     {
-                        WhiteCell = false;// 1 mean black
+                        WhiteCell = false;
                     }
                     // to generate board pieces 
                     BoardPiece Piece = null;
@@ -111,11 +104,11 @@ namespace Checkers_TahiraKhan
                     content[i, j] = Cell;
                     if (pieceColor == game.Player1.Color)
                     {
-                        game.Player1.ActivePieces.Add(Piece);//add to list of active pieces for player1
+                        game.Player1.ActivePieces.Push(Piece);//add to list of active pieces for player1
                     }
                     else if (pieceColor == game.Player2.Color)
                     {
-                        game.Player2.ActivePieces.Add(Piece);//add to list of active pieces for player2
+                        game.Player2.ActivePieces.Push(Piece);//add to list of active pieces for player2
                     }
 
                 }
@@ -173,7 +166,7 @@ namespace Checkers_TahiraKhan
             }
             return turn;
         }
-        //mouse up event 
+        //mouse up event that send the selected cell to SelectedForMove method
         public void PieceMouseUp(object sender, MouseButtonEventArgs e)
         {
             bool result = SelectCellForMove(sender as BoardCell);
@@ -209,6 +202,11 @@ namespace Checkers_TahiraKhan
             }
             return result;
         }
+        /// <summary>
+        /// call move method in move class once all validations return true result
+        /// </summary>
+        /// <param name="move"></param>
+        /// <returns></returns>
         public bool CompleteMove(Move move)
         {
             bool result = false;
@@ -255,17 +253,27 @@ namespace Checkers_TahiraKhan
             }
             return result;
         }
+        /// <summary>
+        /// change normal piece to king piece when a piece reach to the first row of opposit piece 
+        /// </summary>
+        /// <param name="move"></param>
+        /// <returns></returns>
         public bool ProcessKingMove(Move move)
         {
             bool result = false;
             if (move.Piece.IsKing == false && (move.DestinationCell.CurrentPiece.Owner.BoardRowStart == Player.Player1 && move.DestinationCell.Y == Player.Player2 ||
                 move.DestinationCell.CurrentPiece.Owner.BoardRowStart == Player.Player2 && move.DestinationCell.Y == Player.Player1))
             {
-                move.Piece.MakeKing();
+                move.Piece.MakeKing();//make it king
                 move.isKing = true;
             }
             return result;
         }
+        /// <summary>
+        /// determine the direction for a piece
+        /// </summary>
+        /// <param name="move"></param>
+        /// <returns></returns>
         public bool ValidateMoveForDirection(Move move)
         {
             bool result = true;
@@ -275,7 +283,7 @@ namespace Checkers_TahiraKhan
                 int Low;
                 if (move.Piece.Owner.BoardRowStart == 0)//when the moving pieces belong to a player of top row that is black
                 {
-                    High = move.DestinationCell.Y;//row number greater than source cell
+                    High = move.DestinationCell.Y;// destination row number greater than source cell
                     Low = move.SourceCell.Y;
                 }
                 else
@@ -321,14 +329,17 @@ namespace Checkers_TahiraKhan
                 {
                     MidY = move.SourceCell.Y - 1;
                 }
-                //if 
+                //result is true if the colour of a middle piece is not same as the moving piece colour
                 result = content[MidY, MidX].CurrentPiece != null && content[MidY, MidX].CurrentPiece.GetColor() != move.Piece.GetColor();
                 if (result)
                     return content[MidY, MidX];
             }
             return null;
         }
-        //
+        /// <summary>
+        /// if there is a captured piece then add to killed piece list
+        /// </summary>
+        /// <param name="move"></param>
         public void ProcessKilledPiece(Move move)
         {
             if (move != null)
@@ -337,8 +348,8 @@ namespace Checkers_TahiraKhan
                 if (Cell != null)
                 {
                     move.KilledPiece = Cell.CurrentPiece;
-                    Cell.CurrentPiece.Owner.KilledPieces.Add(Cell.CurrentPiece);//add to list of killed pieces
-                    Cell.CurrentPiece.Owner.ActivePieces.Remove(Cell.CurrentPiece);//remove from active pieces
+                    Cell.CurrentPiece.Owner.KilledPieces.Push(Cell.CurrentPiece);
+                    Cell.CurrentPiece.Owner.ActivePieces.Pop();
                     Cell.SetPiece(null);
                 }
             }

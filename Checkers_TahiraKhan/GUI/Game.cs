@@ -239,12 +239,5 @@ namespace Checkers_TahiraKhan
         public const string HUMAN_VS_AI = "HUMAN_VS_AI";
         public const string AI_VS_AI = "AI_VS_AI";
 
-        public Board Board
-        {
-            get => default(Board);
-            set
-            {
-            }
-        }
     }    
 }

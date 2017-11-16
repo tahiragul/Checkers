@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 
 namespace Checkers_TahiraKhan
 {
+    /// <summary>
+    /// store source, destination cells and piece for every move
+    /// 
+    /// </summary>
     public class Move
     {
         public BoardCell DestinationCell { get; set; }
         public BoardCell SourceCell { get; set; }
         public BoardPiece Piece { get; set; }
-        public string Status { get; set; }//New or Complete
         public BoardPiece KilledPiece { get; set; }
         public bool isKing { get; set; }
         public Move(BoardCell SourceCell, BoardCell DestinationCell)
@@ -29,7 +32,7 @@ namespace Checkers_TahiraKhan
         {
             DestinationCell.SetPiece(Piece);//destination cell is set with the piece
             SourceCell.SetPiece(null);
-            game.Movements.Push(this);// add to movement list in the game to keep track of all the movements
+            game.Movements.Push(this);// add to movement stack in the game to keep track of all the movements
             return true;
         }
         /// <summary>
@@ -43,7 +46,7 @@ namespace Checkers_TahiraKhan
         {
             SourceCell.SetPiece(Piece); 
             DestinationCell.SetPiece(null);
-            game.UndoMovements.Push(this);//add move to a list in the game class
+            game.UndoMovements.Push(this);
             if (KilledPiece != null)
             {
                 game.board.content[KilledPiece.Y, KilledPiece.X].SetPiece(KilledPiece);
